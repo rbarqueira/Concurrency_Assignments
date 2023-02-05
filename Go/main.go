@@ -1,0 +1,33 @@
+package main
+
+import (
+	"fmt"
+	"protein_synthesis/message"
+	"strings"
+)
+
+const DNA = `ctgtccttctgtttccggatgcaaaagttgtctatgcattcttgactggtccccccgatcgacatgctgatgggagttgctatcaaacacgtgggggtggtcctcagttcaaatgggcta
+atcaagagcccggtgctgcgctccgtctgaattttgctataatttaaccaactaatagatatgtcctgtttgttctcgcttcataaccagttcacttggtggatctatgcccaacgtgct
+ataacgatgtgtacgactgcggggcgacagtcccactgcagttcttaagtgatgctctcggtggccgtctcataccgtctgcacaaataatcaatagctcttgctccccgtccccaccag
+aagtaaagaacattgtaaaactcatattcagacatcacacagaggggacagccaggatgaggagttgcattcgctgcttaacaacgcttgttgaatacatatcacagccgggggcgaaca
+acccgactgatacatgtgattatgcatatcgtacattataaatgtaggtccggatctcggttaccctccgattacaaattaatcacggaatccgcataatctggccaacgggattgttgc
+cctcagcgcagaatcctcaagtctcttcactttggggttcatctccgggacagcacgtccatggccctatacgtggaagccgtcgtgagatcaccgccggacggaggggcagcctagtgt
+agtggtctgatctcgcgtgagggtgcgtacaatatcaggacctctgtgcgggaagtggttaaatctaaagcttcgacgcaagactcggggctgtttgatgctgatgtcactaccccccac
+gccttctgggtagtccgaagttcactggctacagtgtagtcaattgagacgaaggctccagagaaccgtaagccgatcgttcttagaaccggcggtgtgtgcggagcattttgccacttc
+ttgttttgtccatctctccgcagcccaagagtctatggat`
+
+func sampleReqMsg() *message.Message {
+	return message.NewTranscriptionRequest(DNA)
+
+}
+
+func sampleResMsg() *message.Message {
+
+	return message.NewTranscriptionResult(strings.ReplaceAll(DNA, "t", "u"))
+}
+
+func main() {
+	fmt.Println("A sample request message", sampleReqMsg())
+	fmt.Println("A sample reply message", sampleResMsg())
+
+}
